@@ -49,7 +49,7 @@ public class ProyectoFinal {
                             actualizaractivo(idActivos,estadoActivos,asignadoActivos);
                             break;
                         case 3:
-                            informe(idActivos,nombreActivos,estadoActivos,asignadoActivos);
+                            informe(idActivos,nombreActivos,estadoActivos);
                             break;
                         case 4:
                             System.out.println("Sesión Finalizada");
@@ -124,7 +124,7 @@ public class ProyectoFinal {
         }
 
 
-    private static void informe(List<String> idActivos, List<String> nombreActivos, List<String> estadoActivos, List<String> asignadoActivos) {
+    private static void informe(List<String> idActivos, List<String> nombreActivos, List<String> estadoActivos) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\n*** INFORME ACTIVOS ***");
         System.out.println("1. Activos por Estado");
@@ -147,15 +147,9 @@ public class ProyectoFinal {
                 break;
             case 2:
                 List<String> listaStock = new ArrayList<String>();
-                String valor1 = null;
-                String valor2 = null;
-                int j = 0;
-                for(int i = 0; i <nombreActivos.size(); i++) {
-                    valor1 = nombreActivos.get(i);
-                    valor2 = nombreActivos.get(j);
-                    if(valor1 != valor2){
-                        listaStock.add(valor1);
-                        j++;
+                for (int i=0;  i<nombreActivos.size();i++) {
+                    if (!listaStock.contains(nombreActivos.get(i))) {
+                        listaStock.add(nombreActivos.get(i));
                     }
                 }
                 System.out.println("\n******** INFORME DE ACTIVOS POR STOCK ********");

@@ -124,31 +124,58 @@ public class ProyectoFinal {
         }
 
 
-        private static void informe(List<String> idActivos, List<String> nombreActivos, List<String> estadoActivos, List<String> asignadoActivos) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("*** INFORME ACTIVOS ***");
-            System.out.println("1. Activos por estado");
-            System.out.println("2. Activos por stock");
-            int opcion = scanner.nextInt();
-            List<String> filtroEstado = new ArrayList<String>();
-            if(opcion == 1){
+    private static void informe(List<String> idActivos, List<String> nombreActivos, List<String> estadoActivos, List<String> asignadoActivos) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n*** INFORME ACTIVOS ***");
+        System.out.println("1. Activos por Estado");
+        System.out.println("2. Activos por Stock");
+        System.out.println("3. Regresar");
+        System.out.println("*************************");
+        System.out.print("\nIngrese la opción deseada: ");
+        int opcion = scanner.nextInt();
+        List<String> filtroEstado = new ArrayList<String>();
+        switch (opcion) {
+            case 1:
+                System.out.println("\n******** INFORME DE ACTIVOS POR ESTADO ********");
+                System.out.println("-------------------------------");
+                System.out.println("| ID | Nombre Activo | Estado |");
                 for(int i = 0; i < nombreActivos.size() ; i++){
-                    filtroEstado.add(nombreActivos.get(i)+" "+estadoActivos.get(i));
+                    filtroEstado.add("| "+idActivos.get(i)+" | "+nombreActivos.get(i)+" | "+estadoActivos.get(i)+" |");
                     System.out.println(filtroEstado.get(i));
                 }
-
-            } else if (opcion == 2) {
-                int stockLaptop = contadorStock(nombreActivos, "Laptop");
-                int stockLicencia = contadorStock(nombreActivos, "Licencia");
-                int stockMemoria = contadorStock(nombreActivos, "Licencia");
-
-                System.out.println("Laptop: " + stockLaptop);
-                System.out.println("Licencia: " + stockLicencia);
-                System.out.println("Memoria: " + stockMemoria);
-
-            }
-
+                System.out.println("-------------------------------");
+                break;
+            case 2:
+                List<String> listaStock = new ArrayList<String>();
+                String valor1 = null;
+                String valor2 = null;
+                int j = 0;
+                for(int i = 0; i <nombreActivos.size(); i++) {
+                    valor1 = nombreActivos.get(i);
+                    valor2 = nombreActivos.get(j);
+                    if(valor1 != valor2){
+                        listaStock.add(valor1);
+                        j++;
+                    }
+                }
+                System.out.println("\n******** INFORME DE ACTIVOS POR STOCK ********");
+                System.out.println("-------------------------");
+                System.out.println("|  Activo   | STOCK |");
+                System.out.println("---------------------");
+                for(int i = 0; i < listaStock.size(); i++) {
+                    int contador = contadorStock(nombreActivos, listaStock.get(i));
+                    System.out.println(listaStock.get(i) + ": " + contador);
+                }
+                System.out.println("-------------------------");
+                break;
+            case 3:
+                break;
+            default:
+                System.out.println("Opcion incorrecta");
         }
+
+    }
+
 
         public static int contadorStock(List<String> array, String elemento) {
             int contador = 0;

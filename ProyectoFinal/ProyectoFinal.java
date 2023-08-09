@@ -170,7 +170,6 @@ public class ProyectoFinal {
 
     }
 
-
         public static int contadorStock(List<String> array, String elemento) {
             int contador = 0;
 
@@ -209,5 +208,4 @@ public class ProyectoFinal {
                 System.out.println("\nNo se encontro el ID de Activo");
             }
         }
-
     }

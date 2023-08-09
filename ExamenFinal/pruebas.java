@@ -1,4 +1,4 @@
-package examenFinal;
+package ExamenFinal;
 
 import java.util.ArrayList;
 import java.util.List;
